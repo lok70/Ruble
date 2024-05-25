@@ -1,0 +1,1 @@
+require "wordle_game/game"

@@ -1,0 +1,52 @@
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Локальные конфигурации
+config/database.yml
+config/secrets.yml
+
+# Каталог bundler
+.bundle
+
+# Гемы, установленные локально
+/vendor/bundle
+
+# Файлы и каталоги для тестирования
+coverage/
+spec/examples.txt
+
+# Логи
+log/*
+!log/.keep
+
+# Темповые файлы и каталоги
+tmp/
+!tmp/.keep
+
+# Сессии, pid-файлы, статические файлы
+/tmp
+/pids
+*.pid
+*.seed
+/public/assets
+
+# Файлы редактора
+*~
+*.swp
+*.swo
+.project
+.idea
+.vscode/
+
+# Файлы операционной системы
+*.bak
+*.backup
+
+# Yarn
+.yarn/*
+!.yarn/cache
+!.yarn/unplugged
+!.yarn/build-state.yml
+!.yarn/install-state.gz
+.pnp.*
