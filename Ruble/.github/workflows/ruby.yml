@@ -18,8 +18,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0 # Замените на вашу версию Ruby
-
+          ruby-version: 3.2.3 
       - name: Install dependencies
         run: bundle install
 
