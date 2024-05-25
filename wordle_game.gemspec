@@ -1,7 +1,7 @@
 # wordle_game.gemspec
 Gem::Specification.new do |spec|
     spec.name          = "wordle_game"
-    spec.version       = "0.1.0"
+    spec.version       = "0.1.1"
     spec.authors       = ["Egor Pavlov Nikita Kolomytsev"]
     spec.email         = ["lokwer321@gmail.com nkolomytsev10@gmail.com"]
     spec.summary       = %q{A Ruby library for playing a Wordle-like game.}
