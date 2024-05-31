@@ -2,7 +2,7 @@ module WordleGame
   class Game
     attr_reader :word_length, :max_attempts, :attempts, :target_word
 
-    WORD_LIST = %w[apple banjo cider delta eagle other words longest]  # Добавьте слово длиной 7 символов
+    WORD_LIST = %w[apple banjo cider delta eagle other words longest]
 
     def initialize(word_length = 5, max_attempts = 6)
       @word_length = word_length
@@ -38,16 +38,27 @@ module WordleGame
 
     def check_guess(guess)
       target_word_chars = target_word.chars
-      guess.chars.map.with_index do |char, index|
+      guess_chars = guess.chars
+      result = Array.new(word_length, :grey)
+      temp_target_word_chars = target_word_chars.dup
+
+      guess_chars.each_with_index do |char, index|
         if char == target_word[index]
-          :green
-        elsif target_word_chars.include?(char)
-          target_word_chars.delete_at(target_word_chars.index(char))  # Удалите первую встречу символа, чтобы избежать повторений
-          :yellow
-        else
-          :grey
+          result[index] = :green
+          temp_target_word_chars[index] = nil
         end
       end
+
+      guess_chars.each_with_index do |char, index|
+        next if result[index] == :green
+
+        if temp_target_word_chars.include?(char)
+          result[index] = :yellow
+          temp_target_word_chars[temp_target_word_chars.index(char)] = nil
+        end
+      end
+
+      result
     end
   end
 end
