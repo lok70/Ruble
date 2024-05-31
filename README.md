@@ -38,13 +38,13 @@ gem install wordle_game
 require 'wordle_game'
 ```
 
-# Инициализация игры с длиной слова 5 букв и максимальным количеством попыток 6
+Инициализация игры с длиной слова 5 букв и максимальным количеством попыток 6
 
 ```ruby
 game = WordleGame::Game.new(5, 6)
 ```
 
-# Делайте попытки
+Делайте попытки
 ```ruby
 result = game.attempt('apple')
 puts result # => { status: :correct, result: [:green, :green, :green, :green, :green], attempts_left: 5 }
