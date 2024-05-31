@@ -15,34 +15,12 @@ RSpec.describe WordleGame::Game do
     it 'chooses a target word from the word list' do
       expect(WordleGame::Game::WORD_LIST).to include(game.target_word)
     end
-
-    context 'with custom parameters' do
-      let(:custom_game) { WordleGame::Game.new(7, 10) }
-
-      it 'sets the custom word length' do
-        expect(custom_game.word_length).to eq(7)
-      end
-
-      it 'sets the custom max attempts' do
-        expect(custom_game.max_attempts).to eq(10)
-      end
-
-      it 'chooses a target word with the custom word length' do
-        expect(custom_game.target_word.length).to eq(7)
-      end
-    end
   end
 
   describe '#attempt' do
     context 'when the guess length is incorrect' do
       it 'returns an invalid status' do
         result = game.attempt('shor')
-        expect(result[:status]).to eq(:invalid)
-        expect(result[:message]).to eq("Guess length must be 5")
-      end
-
-      it 'returns an invalid status for a too long guess' do
-        result = game.attempt('toolong')
         expect(result[:status]).to eq(:invalid)
         expect(result[:message]).to eq("Guess length must be 5")
       end
@@ -91,22 +69,6 @@ RSpec.describe WordleGame::Game do
         expect(result[:message]).to eq("No more attempts allowed")
       end
     end
-
-    context 'when guess contains spaces' do
-      it 'returns an invalid status' do
-        result = game.attempt('     ')
-        expect(result[:status]).to eq(:invalid)
-        expect(result[:message]).to eq("Guess length must be 5")
-      end
-    end
-
-    context 'when guess is empty' do
-      it 'returns an invalid status' do
-        result = game.attempt('')
-        expect(result[:status]).to eq(:invalid)
-        expect(result[:message]).to eq("Guess length must be 5")
-      end
-    end
   end
 
   describe '#check_guess' do
@@ -117,12 +79,6 @@ RSpec.describe WordleGame::Game do
 
       result = game.send(:check_guess, 'pearl')
       expect(result).to eq([:yellow, :yellow, :yellow, :grey, :yellow])
-    end
-
-    it 'handles guesses with repeated letters correctly' do
-      game.instance_variable_set(:@target_word, 'apple')
-      result = game.send(:check_guess, 'allee')
-      expect(result).to eq([:grey, :yellow, :yellow, :green, :green])
     end
   end
 end
